@@ -7,11 +7,11 @@
 # 1) Randomly select N number of animals from a pool of animals.
 # 2) Randomly distribute the selected animals into N number of plates. This step can be done in parallel for multiple batches, e.g. one per sample type.
 
-# ARGUMENTS
-# animalvector: vector of animal codes to be included in the randomisation
+# ARGUMENTS (asterisk indicate compulsory arguments)
+# *animalvector: vector of animal codes to be included in the randomisation
 # animalexcludevector: vector of animal codes to be excluded in the randomisation (e.g. samples randomised in a previous batch)
-# blocksize: number of animals in the lowest block size (pen). In the case of chicken: 6
-# blocksampled: number of animals in the lowest block size (pen) to be included in the randomisation. e.g. If 2, two chickens out of the six will be randomly selected per pen
+# blocksize: number of animals in the lowest block size (pen). Default 6.
+# blocksampled: number of animals in the lowest block size (pen) to be included in the randomisation. e.g. If 2, two chickens out of the six will be randomly selected per pen.. Default 2
 # batchnames: vector of batch names. e.g. c("F1","D1","B1") or c("IleumMucosa","CaecumMucosa","CaecumContent"). Samples will be randomly distributed into plates in each batch. 
 # positive: number of positive samples per plate. Default 90
 # negext: number of extraction controls per plate. Default 2
@@ -23,7 +23,7 @@
 # EXAMPLE
 # ChickenRand(animalvector=c("CB02.17","CA23.05","CB15.16","CB09.04","CB05.16","CA13.11",...),animalexcludevector=c("CB02.17","CA23.05",...),blocksize=6,blocksampled=2,batchnames=c('C1','F1','B1','D2'),positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=112)
 
-ChickenRand <- function(animalvector,animalexcludevector,blocksize=6,blocksampled=2,batchnames,positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=9999){
+ChickenRand <- function(animalvector,animalexcludevector,blocksize=6,blocksampled=2,batchnames,positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed){
 
 if(missing(animalvector)) stop("Animal list is missing.")
 
