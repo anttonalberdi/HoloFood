@@ -21,15 +21,21 @@
 # seed: integer to enable replicate a randomisation.
 
 # EXAMPLE
-# ChickenRand(animalvector=c("CB02.17","CA23.05","CB15.16","CB09.04","CB05.16","CA13.11"),animalexcludevector=c("CB02.17","CA23.05"),blocksize=6,blocksampled=2,batchnames=c('C1','F1','B1','D2'),positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=112)
+# ChickenRand(animalvector=c("CB02.17","CA23.05","CB15.16","CB09.04","CB05.16","CA13.11",...),animalexcludevector=c("CB02.17","CA23.05",...),blocksize=6,blocksampled=2,batchnames=c('C1','F1','B1','D2'),positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=112)
 
 ChickenRand <- function(animalvector,animalexcludevector,blocksize=6,blocksampled=2,batchnames,positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=9999){
+
+if(missing(animalvector)) stop("Animal list is missing.")
 
 #Exclude samples if argument animalexcludevector provided
 if(!missing(animalexcludevector)){
 animals <- setdiff(animalvector,animalexcludevector)
 }else{
 animals <- animalvector
+}
+  
+if(missing(batchnames)){
+batchnames <- "Randomisation"
 }
 
 batchsize <- positive + negext + neglib + negpcr
