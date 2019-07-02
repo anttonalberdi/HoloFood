@@ -1,0 +1,1 @@
+#Chicken randomisation function
