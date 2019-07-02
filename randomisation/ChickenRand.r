@@ -17,12 +17,11 @@
 # negext: number of extraction controls per plate. Default 2
 # neglib: number of library controls per plate. Default 2
 # negpcr: number of indexing controls per plate. Default 2
-# fit: whether positive samples + controls will be fited to avoid semi-empty plates or not. Note that if TRUE, some of the selected samples will be removed from the plates.
+# fit: whether positive samples + controls will be fited to avoid semi-empty plates or not.
+# seed: integer to enable replicate a randomisation.
 
-
-#Example: ChickenRand(animalvector=c("CB02.17","CA23.05","CB15.16","CB09.04","CB05.16","CA13.11"),animalexcludevector=c("CB02.17","CA23.05"),blocksize=6,blocksampled=2,batchnames=c('C1','F1','B1','D2'),positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=112)
-
-
+# EXAMPLE
+# ChickenRand(animalvector=c("CB02.17","CA23.05","CB15.16","CB09.04","CB05.16","CA13.11"),animalexcludevector=c("CB02.17","CA23.05"),blocksize=6,blocksampled=2,batchnames=c('C1','F1','B1','D2'),positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=112)
 
 ChickenRand <- function(animalvector,animalexcludevector,blocksize=6,blocksampled=2,batchnames,positive=90,negext=2,neglib=2,negpcr=2,fit=TRUE,seed=9999){
 
