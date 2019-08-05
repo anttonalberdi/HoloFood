@@ -2,7 +2,7 @@
 ### $1: raw data file for., $2: raw data file rev.
 ### software list: fastqc, AdapterRemoval, seqkit, BBMap/repair.sh
 ### Step 0: Demultiplexing
-### Skipped sometime
+### Skipped
 
 ### Step 1: Generate quality report. Use 'FastQC'
 mkdir -p 1_quality_report
