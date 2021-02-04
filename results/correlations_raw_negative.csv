@@ -1,0 +1,16 @@
+"Chicken_body_weight","iButyric.totalFA_ratio_ileum",-0.853025341699179
+"Chicken_body_weight","IL1_ileum",-0.973543187831385
+"Chicken_body_weight","IL2_ileum",-0.893519893834828
+"Chicken_body_weight","IL4_ileum",-0.967525524792445
+"Chicken_body_weight","IL6_ileum",-0.823313230024899
+"Chicken_body_weight","IL10_ileum",-0.918260662431
+"IL4_caecum","IL2_ileum",-0.875003434074479
+"IL4_caecum","IL10_ileum",-0.825463744747773
+"IL12_caecum","iButyric.totalFA_ratio_ileum",-0.806451176112362
+"IL12_caecum","IL1_ileum",-0.861658222107221
+"IL12_caecum","IL4_ileum",-0.84110539171983
+"IL18_caecum","IL1_ileum",-0.856964032087036
+"IL18_caecum","IL4_ileum",-0.851957121280459
+"IL18_caecum","IL10_ileum",-0.810189199681824
+"IL2_ileum","IL18_ileum",-0.845707332321629
+"IL2_ileum","MUC2_ileum",-0.80997982164988

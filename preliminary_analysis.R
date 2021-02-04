@@ -36,6 +36,24 @@ cortable[,3] <- as.numeric(as.character(cortable[,3]))
 write.table(cortable[cortable[,3] > 0.80,],"results/correlations_raw_positive.csv",sep=",",row.names=FALSE,col.names=FALSE)
 write.table(cortable[cortable[,3] < -0.80,],"results/correlations_raw_negative.csv",sep=",",row.names=FALSE,col.names=FALSE)
 
+body_weight_cor <- cortable[cortable[,1]== "Chicken_body_weight",]
+body_weight_cor <- body_weight_cor[order(body_weight_cor[,3]),]
+
+body_weight_corplot <- ggplot(data=body_weight_cor, aes(x=reorder(V2, V3), y=V3)) +
+  geom_bar(stat="identity") +
+  ylim(-1, 1) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  ggsave("plots/body_weight_corplot.png",body_weight_corplot,width=10,height=4)
+
+
+#Test
+pair_subset <- chickentable[,c("Chicken_body_weight","MUC2_caecum")]
+pair_subset <- pair_subset[complete.cases(pair_subset),]
+cor.test(as.numeric(pair_subset[,1]),as.numeric(pair_subset[,2]))
+
+
+
+
 
 ######
 #
@@ -62,6 +80,17 @@ cortable[,3] <- as.numeric(as.character(cortable[,3]))
 write.table(cortable[cortable[,3] > 0.80,],"results/correlations_d7_positive.csv",sep=",",row.names=FALSE,col.names=FALSE)
 write.table(cortable[cortable[,3] < -0.80,],"results/correlations_d7_negative.csv",sep=",",row.names=FALSE,col.names=FALSE)
 
+body_weight_cor <- cortable[cortable[,1]== "Chicken_body_weight",]
+body_weight_cor <- body_weight_cor[order(body_weight_cor[,3]),]
+
+
+body_weight_corplot <- ggplot(data=body_weight_cor, aes(x=reorder(V2, V3), y=V3)) +
+  geom_bar(stat="identity") +
+  ylim(-1, 1) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  ggsave("plots/body_weight_corplot_d7.png",body_weight_corplot,width=10,height=4)
+
+
 #Day 21
 chickentable_sub <- chickentable[chickentable$Sampling_time == "Day 21",]
 cortable <- c()
@@ -81,6 +110,14 @@ cortable[,3] <- as.numeric(as.character(cortable[,3]))
 write.table(cortable[cortable[,3] > 0.80,],"results/correlations_d21_positive.csv",sep=",",row.names=FALSE,col.names=FALSE)
 write.table(cortable[cortable[,3] < -0.80,],"results/correlations_d21_negative.csv",sep=",",row.names=FALSE,col.names=FALSE)
 
+body_weight_cor <- cortable[cortable[,1]== "Chicken_body_weight",]
+body_weight_cor <- body_weight_cor[order(body_weight_cor[,3]),]
+
+body_weight_corplot <- ggplot(data=body_weight_cor, aes(x=reorder(V2, V3), y=V3)) +
+  geom_bar(stat="identity") +
+  ylim(-1, 1) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  ggsave("plots/body_weight_corplot_d21.png",body_weight_corplot,width=10,height=4)
 
 #Day 35
 chickentable_sub <- chickentable[chickentable$Sampling_time == "Day 35",]
@@ -101,7 +138,25 @@ cortable[,3] <- as.numeric(as.character(cortable[,3]))
 write.table(cortable[cortable[,3] > 0.80,],"results/correlations_d35_positive.csv",sep=",",row.names=FALSE,col.names=FALSE)
 write.table(cortable[cortable[,3] < -0.80,],"results/correlations_d35_negative.csv",sep=",",row.names=FALSE,col.names=FALSE)
 
+body_weight_cor <- cortable[cortable[,1]== "Chicken_body_weight",]
+body_weight_cor <- body_weight_cor[order(body_weight_cor[,3]),]
 
+#Plot
+body_weight_corplot <- ggplot(data=body_weight_cor, aes(x=reorder(V2, V3), y=V3)) +
+  geom_bar(stat="identity") +
+  ylim(-1, 1) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  ggsave("plots/body_weight_corplot_d35.png",body_weight_corplot,width=10,height=4)
+
+#Model
+model <- lm(Chicken_body_weight ~ MUC2_ileum + Acidic_goblet_cell_number_ileum + Cortisol + IL6_caecum + Crypt_depth_ileum + IFNg_ileum + Propionic.totalFA_ratio_ileum, data = chickentable_sub)
+summary(model)
+sigma(model)/mean(chickentable_sub$Chicken_body_weight)
+
+ind="CA05.17"
+predicted <- 2691.806 + -104.153*chickentable_sub[ind,"MUC2_ileum"] + 1.056*chickentable_sub[ind,"Acidic_goblet_cell_number_ileum"] + -2.847*chickentable_sub[ind,"Cortisol"] + 159.006*chickentable_sub[ind,"IL6_caecum"] + -2.064*chickentable_sub[ind,"Crypt_depth_ileum"] + -185.763*chickentable_sub[ind,"IFNg_ileum"] + 1851.851*chickentable_sub[ind,"Propionic.totalFA_ratio_ileum"]
+observed <- chickentable_sub[ind,"Chicken_body_weight"]
+predicted / observed
 
 
 #i.Valeric_acid_caecum CA01.03 - change to NA
